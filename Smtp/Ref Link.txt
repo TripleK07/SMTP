@@ -1,5 +1,4 @@
-﻿
-smtp
+﻿smtp
 https://stackoverflow.com/questions/6244694/send-smtp-email-using-system-net-mail-via-exchange-online-office-365/61093253#61093253
 
 
