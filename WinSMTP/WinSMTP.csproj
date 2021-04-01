@@ -48,6 +48,12 @@
     <Compile Include="clsEncryption.cs" />
     <Compile Include="clsHelper.cs" />
     <Compile Include="clsSMTP.cs" />
+    <Compile Include="frmExportAndSend.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmExportAndSend.Designer.cs">
+      <DependentUpon>frmExportAndSend.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
