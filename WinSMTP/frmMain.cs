@@ -15,5 +15,16 @@ namespace WinSMTP
         {
             InitializeComponent();
         }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void emailSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEmailSetup frm = new frmEmailSetup();
+            frm.ShowDialog();
+        }
     }
 }
