@@ -15,5 +15,19 @@ namespace WinSMTP
         {
             InitializeComponent();
         }
+
+        private void btnSend_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<String> files = clsHelper.getFilesFromAttachmentPath();
+                clsSMTP smtp = new clsSMTP();
+                smtp.sendMail(files);
+            }
+            catch(Exception ex)
+            {
+                clsHelper.WriteErrorLog(ex);
+            }
+        }
     }
 }

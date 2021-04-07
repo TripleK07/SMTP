@@ -20,19 +20,23 @@ namespace WinSMTP
         public static String body = "";
         public static String attachmentPath = "";
 
-        public static String configExeName = "\\WinSMTP.exe";
-        public static String configName = "\\WinSMTP.exe.config";
+        private static String configExeName = "\\WinSMTP.exe";
+        private static String configName = "\\WinSMTP.exe.config";
 
+        private static Configuration getConfiguration()
+        {
+            return ConfigurationManager.OpenExeConfiguration(Application.StartupPath + configExeName);
+        }
         public static void writeConfigVariables()
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.StartupPath + configExeName);
+            Configuration config = getConfiguration();
             config.AppSettings.Settings.Remove("sender");
             config.AppSettings.Settings.Remove("senderPassword");
             config.AppSettings.Settings.Remove("recipients");
             config.AppSettings.Settings.Remove("subject");
             config.AppSettings.Settings.Remove("body");
             config.AppSettings.Settings.Remove("attachmentPath");
-            
+
             config.AppSettings.Settings.Add("sender", sender);
             config.AppSettings.Settings.Add("senderPassword", clsEncryption.Encrypt(senderPassword, "mab-bank-mufi-auto-email"));  //key must has 24 characters
             config.AppSettings.Settings.Add("recipients", recipients);
@@ -45,16 +49,31 @@ namespace WinSMTP
 
         public static void readConfigVariables()
         {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(Application.StartupPath + configExeName);
+            Configuration config = getConfiguration();
             if (config.AppSettings.Settings.Count > 0)
             {
                 sender = config.AppSettings.Settings["sender"].Value;
                 senderPassword = clsEncryption.Decrypt(config.AppSettings.Settings["senderPassword"].Value, "mab-bank-mufi-auto-email"); //key must has 24 characters
                 recipients = config.AppSettings.Settings["recipients"].Value;
                 subject = config.AppSettings.Settings["subject"].Value;
-                body =config.AppSettings.Settings["body"].Value;
+                body = config.AppSettings.Settings["body"].Value;
                 attachmentPath = config.AppSettings.Settings["attachmentPath"].Value;
             }
+        }
+
+        public static List<String> getFilesFromAttachmentPath()
+        {
+            List<String> files = new List<string>();
+
+            if (attachmentPath == "" || attachmentPath == null)
+                readConfigVariables();
+
+            if (Directory.Exists(attachmentPath))
+            {
+                files = Directory.GetFiles(attachmentPath).ToList();
+            }
+
+            return files;
         }
 
         public static void WriteErrorLog(Exception ex)

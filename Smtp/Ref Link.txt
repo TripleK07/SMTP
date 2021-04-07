@@ -10,3 +10,6 @@ https://social.msdn.microsoft.com/Forums/vstudio/en-US/03c4b069-5033-4732-bf78-4
 
 attachment
 https://stackoverflow.com/questions/5034503/adding-an-attachment-to-email-using-c-sharp/5034554
+
+---GnuPG
+https://www.ibm.com/docs/en/tms-and-wt/version-missing?topic=keys-example-using-gnupg-encrypt-files-pgp-key

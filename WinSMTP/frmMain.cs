@@ -26,5 +26,16 @@ namespace WinSMTP
             frmEmailSetup frm = new frmEmailSetup();
             frm.ShowDialog();
         }
+
+        private void mUFIReportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmExportAndSend frm = new frmExportAndSend();
+            frm.ShowDialog();
+        }
+
+        private void frmMain_Load(object sender, EventArgs e)
+        {
+            clsHelper.readConfigVariables();
+        }
     }
 }
